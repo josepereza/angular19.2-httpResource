@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="page-title">
+        @if (vehicles()[0]){
+                  {{vehicles()[0].name}}
+
+        }
+    </div>
+ 
+    @if (isLoading()) {
+    <div>... loading vehicles</div>
+    } @else if (errorMessage()){
+    <div style='color: red'>An error occurred: {{ errorMessage() }}</div>
+    } 
+    @if (vehicles().length) {
+    <table>
+       <thead>
+          <tr>
+             <th>Name</th>
+             <th>Model</th>
+             <th>Cost (in credits)</th>
+          </tr>
+       </thead>
+ 
+       <tbody>
+          @for (vehicle of vehicles(); track vehicle) {
+          <tr >
+             <td>
+                {{ vehicle.name }}
+             </td>
+             <td>
+                {{ vehicle.model }}
+             </td>
+             <td>
+                {{ vehicle.cost_in_credits }}
+             </td>
+          </tr>
+          }
+       </tbody>
+    </table>
+    } @else {
+    <div>No vehicles found</div>
+    }
+ 
+    
+ </div>
